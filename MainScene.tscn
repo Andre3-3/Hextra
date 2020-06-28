@@ -52,7 +52,7 @@ texture = ExtResource( 3 )
 
 [node name="hexagon2" type="Sprite" parent="CenterContainer"]
 self_modulate = Color( 0.145098, 0.0941176, 0.152941, 1 )
-position = Vector2( -76.7767, 31.5639 )
+position = Vector2( -76.2469, 31.5639 )
 scale = Vector2( 0.32, 0.32 )
 z_index = -2
 texture = ExtResource( 3 )
@@ -75,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Control"]
+[node name="Score Text" type="RichTextLabel" parent="CenterContainer/Control"]
 margin_left = -74.2474
 margin_top = -57.7254
 margin_right = 44.7526
@@ -87,7 +87,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CenterContainer/Control"]
+[node name="Score Text Shadow" type="RichTextLabel" parent="CenterContainer/Control"]
 show_behind_parent = true
 margin_left = -79.1101
 margin_top = -54.7674
@@ -100,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CenterContainer/Control"]
+[node name="Score" type="RichTextLabel" parent="CenterContainer/Control"]
 margin_left = -259.0
 margin_top = -20.0
 margin_right = 222.0
@@ -116,7 +116,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CenterContainer/Control"]
+[node name="Score Shadow" type="RichTextLabel" parent="CenterContainer/Control"]
 show_behind_parent = true
 margin_left = -263.418
 margin_top = -16.9694
@@ -374,6 +374,8 @@ texture = ExtResource( 4 )
 "game manager",
 ]]
 script = ExtResource( 6 )
+score_text_path = NodePath("../CenterContainer/Control/Score")
+score_shadow_text_path = NodePath("../CenterContainer/Control/Score Shadow")
 particle = ExtResource( 7 )
 ball = ExtResource( 10 )
 
@@ -420,14 +422,17 @@ scale = Vector2( 1, -1 )
 [node name="Brick4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 399.097, 360.217 )
 rotation = 1.0472
+scale = Vector2( -1, 1 )
 
 [node name="Brick5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 372.691, 316.128 )
 rotation = 1.0472
+scale = Vector2( -1, 1 )
 
 [node name="Brick6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 426.539, 403.431 )
 rotation = 1.0472
+scale = Vector2( -1, 1 )
 
 [node name="Brick13" parent="." instance=ExtResource( 2 )]
 position = Vector2( 643.048, 219.225 )

@@ -1,13 +1,17 @@
 extends Node
 var pos = 0
 var rot = 0
+var score = 0
 onready var particle_instance
 var ball_instance
 onready var timer = get_node("Timer")
 onready var ball_spawn = get_node("Ball Spawn")
+export (NodePath) var score_text_path 
+export (NodePath) var score_shadow_text_path 
 export (PackedScene) var particle
 export (PackedScene) var ball
-
+onready var score_text = get_node(score_text_path)
+onready var score_shadow_text = get_node(score_shadow_text_path)
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -40,10 +44,6 @@ func _on_Area2D_body_exited(body):
 		body.queue_free()
 		timer.start()
 		pass
-		
-
-		
-
 
 func _on_Timer_timeout():
 	timer.stop()
@@ -51,3 +51,9 @@ func _on_Timer_timeout():
 	particle_instance = particle.instance()
 	add_child(ball_instance)
 	return
+	
+func Score(points):
+	score = score + points
+	score_text.bbcode_text = "[center]" + str(score) + "[/center]"
+	score_shadow_text.bbcode_text = "[center]" + str(score) + "[/center]"
+	print(score)
