@@ -1,7 +1,11 @@
 extends Node
+
+var balls = 4
+
 var pos = 0
 var rot = 0
 var score = 0
+var ball_children = []
 onready var particle_instance
 var ball_instance
 onready var timer = get_node("Timer")
@@ -10,6 +14,7 @@ export (NodePath) var score_text_path
 export (NodePath) var score_shadow_text_path 
 export (PackedScene) var particle
 export (PackedScene) var ball
+export (PackedScene) var ball_indicator
 onready var score_text = get_node(score_text_path)
 onready var score_shadow_text = get_node(score_shadow_text_path)
 # Declare member variables here. Examples:
@@ -22,8 +27,19 @@ func _ready():
 	
 	timer.set_wait_time(3)
 	timer.start()
+	var i = 0
 	
-
+	while i < balls:
+		var ball_indicator_instance = ball_indicator.instance()
+		ball_children.append(ball_indicator_instance)
+		ball_indicator_instance.position = Vector2(50 + 40 * i,50)
+		add_child(ball_indicator_instance)
+		i += 1
+	
+		print("balls")
+		yield(get_tree(), "idle_frame")
+	print(ball_children)
+	#ball_children[0].queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -39,6 +55,11 @@ func _on_Area2D_body_exited(body):
 		get_tree().get_root().get_node("CPUParticles2D").position = pos
 		get_tree().get_root().get_node("CPUParticles2D").rotation = rot
 		get_tree().get_root().get_node("CPUParticles2D").emitting = true
+		if balls > 0:
+			ball_children[balls - 1].queue_free()
+			balls -= 1
+		else:
+			print("game over")
 		print(rot)
 		print(pos)
 		body.queue_free()

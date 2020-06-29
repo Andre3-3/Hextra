@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Paddel.gd" type="Script" id=1]
 [ext_resource path="res://Brick.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://GameManager.gd" type="Script" id=6]
 [ext_resource path="res://Ball Assets/BallBurst.tscn" type="PackedScene" id=7]
 [ext_resource path="res://junegull.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://BallIdicator.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Ball Assets/Ball.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
@@ -378,6 +379,7 @@ score_text_path = NodePath("../CenterContainer/Control/Score")
 score_shadow_text_path = NodePath("../CenterContainer/Control/Score Shadow")
 particle = ExtResource( 7 )
 ball = ExtResource( 10 )
+ball_indicator = ExtResource( 9 )
 
 [node name="Ball Spawn" type="Position2D" parent="GameManager"]
 position = Vector2( 520.667, 283.748 )

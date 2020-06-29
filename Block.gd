@@ -9,7 +9,7 @@ func block_break():
 	pass
 
 func particles():
-	var spawn_position = position
+	#var spawn_position = position
 	#get_tree().get_root().add_child(particle.instance())
 	#get_tree().get_root().get_node("BrickBurst").position = position
 	#get_tree().get_root().get_node("BrickBurst").rotation = rotation
