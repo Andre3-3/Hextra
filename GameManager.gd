@@ -1,11 +1,12 @@
 extends Node
 
-var balls = 1
+var balls = 0
 var ballsConstant = balls
 var isDead = false
 var pos = 0
 var rot = 0
 var score = 0
+var highscore 
 var ball_children = []
 onready var particle_instance
 var ball_instance
@@ -16,11 +17,14 @@ export (NodePath) var score_shadow_text_path
 export (NodePath) var score_end_path
 export (NodePath) var score_shadow_end_path
 export (NodePath) var game_over_animator
+export (NodePath) var hiscore_shadow_end_path
+export (NodePath) var hiscore_end_path
 export (PackedScene) var particle
 export (PackedScene) var ball
 export (PackedScene) var ball_indicator
 onready var score_text = get_node(score_text_path)
 onready var score_shadow_text = get_node(score_shadow_text_path)
+var score_file = "user://highscore.score"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -28,7 +32,8 @@ onready var score_shadow_text = get_node(score_shadow_text_path)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	print(highscore)
+	load_score()
 	Setup()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,8 +76,14 @@ func Score(points):
 	
 func Death():
 	isDead = true
+	print(highscore)
+	if score > highscore:
+		highscore = score
+		save_score()
 	get_node(score_shadow_end_path).text = str(score)
 	get_node(score_end_path).text = str(score)
+	get_node(hiscore_end_path).text = str(highscore)
+	get_node(hiscore_shadow_end_path).text = str(highscore)
 	
 	get_node(game_over_animator).play("FadeOut")
 	
@@ -106,7 +117,23 @@ func Setup():
 		yield(get_tree(), "idle_frame")
 	print(ball_children)
 	
-
-
 func _on_TextureButton_pressed():
 	Reset()
+	
+# Tests to see if the file exists and loads the contents if it does
+func load_score():
+	var f = File.new()
+	if f.file_exists(score_file):
+		f.open(score_file, File.READ)
+		var content = f.get_as_text()
+		highscore = int(content)
+		f.close()
+	else:
+		highscore = 0
+
+# call this at game end to store a new highscore
+func save_score():
+	var f = File.new()
+	f.open(score_file, File.WRITE)
+	f.store_string(str(highscore))
+	f.close()
