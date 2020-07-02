@@ -13,6 +13,8 @@ onready var timer = get_node("Timer")
 onready var ball_spawn = get_node("Ball Spawn")
 export (NodePath) var score_text_path 
 export (NodePath) var score_shadow_text_path 
+export (NodePath) var score_end_path
+export (NodePath) var score_shadow_end_path
 export (NodePath) var game_over_animator
 export (PackedScene) var particle
 export (PackedScene) var ball
@@ -69,6 +71,9 @@ func Score(points):
 	
 func Death():
 	isDead = true
+	get_node(score_shadow_end_path).text = str(score)
+	get_node(score_end_path).text = str(score)
+	
 	get_node(game_over_animator).play("FadeOut")
 	
 func SpawnBall():

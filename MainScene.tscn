@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Paddel.gd" type="Script" id=1]
 [ext_resource path="res://Brick.tscn" type="PackedScene" id=2]
@@ -27,8 +27,15 @@ extents = Vector2( 145.793, 10 )
 radius = 23.035
 height = 176.166
 
-[sub_resource type="Animation" id=5]
-resource_name = "FadeOut"
+[sub_resource type="DynamicFont" id=5]
+size = 0
+outline_color = Color( 0.890196, 0.258824, 0.384314, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="Animation" id=7]
 length = 1.2
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("ColorRect:color:r")
@@ -71,7 +78,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.4 )
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Label2:visible")
+tracks/4/path = NodePath("ScoreTextShadow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -83,19 +90,19 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Label3:modulate")
+tracks/5/path = NodePath("HiScoreTextShadow:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.8 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Label3:visible")
+tracks/6/path = NodePath("HiScoreShadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -106,68 +113,78 @@ tracks/6/keys = {
 "update": 1,
 "values": [ false, true ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("Label4:visible")
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("ScoreTextShadow:theme:default_font:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"points": PoolRealArray( 0.0662942, -0.07, 0.0505395, 0.5, 11.0047, 55.0264, -0.22, -6.30193, 0.19, -11.0621, 44.2728, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.9, 1.2 )
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("Label5:visible")
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("CenterContainer:rect_scale:x")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1.13483, -0.25, 0, 0.17, -0.0315953, 1.00034, -0.17, 0.00143123, 0.39, 0.0400479 ),
+"times": PoolRealArray( 0.4, 0.9, 1.05 )
 }
 tracks/9/type = "bezier"
-tracks/9/path = NodePath("Label2:theme:default_font:size")
+tracks/9/path = NodePath("CenterContainer:rect_scale:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"points": PoolRealArray( 0.0662942, -0.07, 0.0505395, 0.5, 11.0047, 55.0264, -0.22, -6.30193, 0.19, -11.0621, 44.2728, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.4, 0.9, 1.2 )
+"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1.13483, -0.25, 0, 0.2, -0.0667014, 0.998933, -0.18, -0.00910056, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.9, 1.06 )
 }
-tracks/10/type = "bezier"
-tracks/10/path = NodePath("CenterContainer:rect_scale:x")
+tracks/10/type = "value"
+tracks/10/path = NodePath("CanvasLayer/Score2:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1.13483, -0.25, 0, 0.17, -0.0315953, 1.00034, -0.17, 0.00143123, 0.39, 0.0400479 ),
-"times": PoolRealArray( 0.4, 0.9, 1.05 )
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
-tracks/11/type = "bezier"
-tracks/11/path = NodePath("CenterContainer:rect_scale:y")
+tracks/11/type = "value"
+tracks/11/path = NodePath("CanvasLayer/Score Shadow2:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1.13483, -0.25, 0, 0.2, -0.0667014, 0.998933, -0.18, -0.00910056, 0.25, 0 ),
-"times": PoolRealArray( 0.4, 0.9, 1.06 )
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("CanvasLayer/Score Shadow2:theme:default_font:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 58, -0.25, 0, 0.25, 0, 45, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.9, 1.1 )
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 0
 outline_color = Color( 0.890196, 0.258824, 0.384314, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="Theme" id=7]
-default_font = SubResource( 6 )
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -511,7 +528,9 @@ texture = ExtResource( 4 )
 script = ExtResource( 6 )
 score_text_path = NodePath("../Control2/Score")
 score_shadow_text_path = NodePath("../Control2/Score Shadow")
-game_over_animator = NodePath("../Control/CanvasLayer/AnimationPlayer")
+score_end_path = NodePath("../GameOverScreen/CanvasLayer/CanvasLayer/Score2")
+score_shadow_end_path = NodePath("../GameOverScreen/CanvasLayer/CanvasLayer/Score Shadow2")
+game_over_animator = NodePath("../GameOverScreen/CanvasLayer/AnimationPlayer")
 particle = ExtResource( 7 )
 ball = ExtResource( 10 )
 ball_indicator = ExtResource( 9 )
@@ -603,17 +622,52 @@ position = Vector2( 610.061, 413.918 )
 rotation = -1.0472
 scale = Vector2( 1, -1 )
 
-[node name="Control" type="Control" parent="."]
+[node name="GameOverScreen" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+[node name="CanvasLayer" type="CanvasLayer" parent="GameOverScreen"]
 layer = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="GameOverScreen/CanvasLayer"]
+layer = 3
+
+[node name="Score Shadow2" type="Label" parent="GameOverScreen/CanvasLayer/CanvasLayer"]
+visible = false
+self_modulate = Color( 0, 0, 0, 0.478431 )
+show_behind_parent = true
+margin_left = 7.74494
+margin_top = -42.0536
+margin_right = 1021.74
+margin_bottom = 497.946
+theme = SubResource( 6 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score2" type="Label" parent="GameOverScreen/CanvasLayer/CanvasLayer"]
+visible = false
+self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
+show_behind_parent = true
+margin_left = 7.74494
+margin_top = -52.0536
+margin_right = 1031.74
+margin_bottom = 497.946
+theme = SubResource( 6 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen/CanvasLayer"]
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.270588, 0.486275, 0.839216, 0 )
@@ -621,10 +675,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/CanvasLayer"]
-anims/FadeOut = SubResource( 5 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverScreen/CanvasLayer"]
+anims/FadeOut = SubResource( 7 )
 
-[node name="Label2" type="Label" parent="Control/CanvasLayer"]
+[node name="ScoreTextShadow" type="Label" parent="GameOverScreen/CanvasLayer"]
+visible = false
 self_modulate = Color( 0, 0, 0, 0.478431 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -632,7 +687,7 @@ margin_top = -85.135
 margin_right = -88.0
 margin_bottom = -143.135
 rect_scale = Vector2( 1.1, 1.1 )
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "Score
 "
 align = 1
@@ -641,13 +696,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/Label2"]
+[node name="ScoreText" type="Label" parent="GameOverScreen/CanvasLayer/ScoreTextShadow"]
 self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
 margin_left = 7.04085
 margin_top = -6.04083
 margin_right = 938.041
 margin_bottom = 539.959
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "Score
 "
 align = 1
@@ -656,46 +711,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Control/CanvasLayer"]
-self_modulate = Color( 0, 0, 0, 0.478431 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -44.0896
-margin_right = -88.0
-margin_bottom = -102.09
-rect_scale = Vector2( 1.1, 1.1 )
-theme = SubResource( 7 )
-text = "0
-"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Control/CanvasLayer/Label3"]
-self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
-margin_left = 7.55105
-margin_top = -5.53062
-margin_right = 938.551
-margin_bottom = 540.469
-theme = SubResource( 7 )
-text = "0
-"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label4" type="Label" parent="Control/CanvasLayer"]
+[node name="HiScoreTextShadow" type="Label" parent="GameOverScreen/CanvasLayer"]
+visible = false
 self_modulate = Color( 0, 0, 0, 0.478431 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -88.0
 margin_bottom = -58.0
 rect_scale = Vector2( 1.1, 1.1 )
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "hi - Score
 "
 align = 1
@@ -704,13 +728,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/Label4"]
+[node name="HiScoreText" type="Label" parent="GameOverScreen/CanvasLayer/HiScoreTextShadow"]
 self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
 margin_left = 5.5102
 margin_top = -5.53062
 margin_right = 936.51
 margin_bottom = 540.469
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "hi - Score
 "
 align = 1
@@ -719,7 +743,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label5" type="Label" parent="Control/CanvasLayer"]
+[node name="HiScoreShadow" type="Label" parent="GameOverScreen/CanvasLayer"]
+visible = false
 self_modulate = Color( 0, 0, 0, 0.478431 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -727,7 +752,7 @@ margin_top = 41.0454
 margin_right = -88.0
 margin_bottom = -16.9551
 rect_scale = Vector2( 1.1, 1.1 )
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "0
 "
 align = 1
@@ -736,13 +761,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/Label5"]
+[node name="HiScore" type="Label" parent="GameOverScreen/CanvasLayer/HiScoreShadow"]
 self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
 margin_left = 7.86344
 margin_top = -4.69763
 margin_right = 938.863
 margin_bottom = 541.302
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 text = "0
 "
 align = 1
@@ -751,7 +776,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen/CanvasLayer"]
 margin_left = 520.0
 margin_top = 477.0
 margin_right = 610.0
@@ -762,7 +787,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="Control/CanvasLayer/CenterContainer"]
+[node name="TextureButton" type="TextureButton" parent="GameOverScreen/CanvasLayer/CenterContainer"]
 self_modulate = Color( 0.294118, 0.231373, 0.611765, 1 )
 light_mask = -2147483647
 margin_left = -94.0
@@ -777,7 +802,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/CenterContainer/TextureButton"]
+[node name="Label" type="Label" parent="GameOverScreen/CanvasLayer/CenterContainer/TextureButton"]
 self_modulate = Color( 0.890196, 0.258824, 0.384314, 1 )
 margin_right = 188.0
 margin_bottom = 102.0
@@ -790,7 +815,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Control/CanvasLayer/CenterContainer/TextureButton/Label"]
+[node name="Label2" type="Label" parent="GameOverScreen/CanvasLayer/CenterContainer/TextureButton/Label"]
 self_modulate = Color( 0, 0, 0, 0.509804 )
 show_behind_parent = true
 margin_left = -4.76758
@@ -806,7 +831,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Control/CanvasLayer/CenterContainer/TextureButton"]
+[node name="Sprite" type="Sprite" parent="GameOverScreen/CanvasLayer/CenterContainer/TextureButton"]
 self_modulate = Color( 0, 0, 0, 0.47451 )
 show_behind_parent = true
 position = Vector2( 87.3073, 57.2805 )
@@ -814,4 +839,4 @@ texture = ExtResource( 11 )
 [connection signal="area_exited" from="Area2D" to="GameManager" method="_on_Area2D_area_exited"]
 [connection signal="body_exited" from="Area2D" to="GameManager" method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_Timer_timeout"]
-[connection signal="pressed" from="Control/CanvasLayer/CenterContainer/TextureButton" to="GameManager" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/CanvasLayer/CenterContainer/TextureButton" to="GameManager" method="_on_TextureButton_pressed"]
